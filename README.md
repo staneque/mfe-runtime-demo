@@ -1,2 +1,1 @@
-# mfe-runtime-examples
-Common micro-frontend setups with module federation plugin
+Common micro-frontend setups using module federation plugin
