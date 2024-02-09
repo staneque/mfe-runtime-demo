@@ -1,0 +1,13 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others 'npm start --prefix marketing' 'npm start --prefix host' 'npm start --prefix dashboard' 'npm start --prefix auth'",
+    "postinstall": "(cd marketing && npm install); (cd dashboard && npm install); (cd host && npm install); (cd auth && npm install);"
+  },
+  "keywords": [ ],
+  "author": "",
+  "license": "ISC"
+}
