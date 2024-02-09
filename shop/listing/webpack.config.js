@@ -6,13 +6,6 @@ module.exports = {
   devServer: {
     port: 8081,
   },
-  optimization: {
-    runtimeChunk: false,
-    splitChunks: false,
-  },
-  experiments: {
-    topLevelAwait: true,
-  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'listing',
