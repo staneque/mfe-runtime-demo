@@ -11,7 +11,7 @@ module.exports = {
       name: 'listing',
       filename: 'remoteEntry.js',
       exposes: {
-        './ListingComponent': './src/index',
+        './ListingComponent': './src/bootstrap',
       },
       shared: ['faker'],
     }),
