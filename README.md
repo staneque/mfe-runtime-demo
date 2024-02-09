@@ -8,7 +8,7 @@ npm install
 npm start
 ```
 
-The host application is running on port 8080. See the webpack output in your console for additional information.
+The host application is running on port `8080`. See the webpack output in your console for additional information.
 
 ### Gotchas
 
