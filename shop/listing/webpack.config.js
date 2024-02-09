@@ -13,6 +13,7 @@ module.exports = {
       exposes: {
         './ListingComponent': './src/index',
       },
+      shared: ['faker'],
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',

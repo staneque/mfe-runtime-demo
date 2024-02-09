@@ -13,6 +13,7 @@ module.exports = {
       exposes: {
         './CartComponent': './src/index.js',
       },
+      shared: ['faker'],
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
