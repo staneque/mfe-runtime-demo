@@ -8,6 +8,8 @@ npm install
 npm start
 ```
 
+The host application is running on port 8080. See the webpack output in your console for additional information.
+
 ### Gotchas
 
 The Module Federation plugin exports a federated module name as a global variable. This can clash with HTML element IDs, which are also attached to the global object, leading to the `fn is not a function...` error, e.g. https://github.com/module-federation/module-federation-examples/issues/322.
