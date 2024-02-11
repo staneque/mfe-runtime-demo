@@ -12,12 +12,14 @@ import {
 
 export default function product() {
   const { product } = useLoaderData()
-  console.log(product)
 
   return (
     <Card id="product" className="mt-6 w-30">
-      <CardHeader color="blue-gray" className="relative h-56">
-        <img src={product.productImage} />
+      <CardHeader color="blue-gray" className="relative h-96">
+        <img
+          src={product.productImage}
+          className="w-full h-full object-cover object-center"
+        />
 
         <Favorite
           size="large"

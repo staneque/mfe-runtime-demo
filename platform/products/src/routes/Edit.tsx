@@ -35,7 +35,7 @@ export default function EditProduct() {
       />
 
       <Input
-        placeholder="https://example.com/123456.jpg"
+        placeholder="https://picsum.photos/1600/600"
         label="Image address"
         aria-label="Product image"
         type="text"

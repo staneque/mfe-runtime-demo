@@ -76,7 +76,7 @@ export default function Root() {
                 <ListItem
                   key={product.id}
                   className="py-3 pr-4 pl-4"
-                  selected={product.id === useParams.productId}
+                  selected={product.id === params.productId}
                 >
                   {product.productName || <i>No Name</i>}
 
