@@ -7,15 +7,30 @@ import {
   useSubmit,
   useParams,
   Form,
+  redirect,
 } from 'react-router-dom'
 import {
   Input,
-  Typography,
   Button,
   List,
   ListItem,
   ListItemSuffix,
 } from '@material-tailwind/react'
+import { getProducts, createProduct } from '../api/products'
+
+export async function loaderRoot({ request }) {
+  const url = new URL(request.url)
+  const query = url.searchParams.get('query')
+  const products = await getProducts(query)
+
+  return { products, query }
+}
+
+export async function actionCreateProduct() {
+  const product = await createProduct()
+
+  return redirect(`/products/${product.id}/edit`)
+}
 
 export default function Root() {
   const { products, query } = useLoaderData()

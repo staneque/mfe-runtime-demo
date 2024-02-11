@@ -1,6 +1,15 @@
 import React from 'react'
-import { Form, useLoaderData, useNavigate } from 'react-router-dom'
+import { Form, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import { Input, Textarea, Typography, Button } from '@material-tailwind/react'
+import { updateProduct } from '../api/products'
+
+export async function actionEdit({ request, params }) {
+  const formData = await request.formData()
+  const updates = Object.fromEntries(formData)
+  await updateProduct(params.productId, updates)
+
+  return redirect(`/products/${params.productId}`)
+}
 
 export default function EditProduct() {
   const { product } = useLoaderData()

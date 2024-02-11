@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, useLoaderData } from 'react-router-dom'
+import { Form, redirect, useLoaderData } from 'react-router-dom'
 import Favorite from '../components/Favorite'
 import {
   Card,
@@ -9,8 +9,36 @@ import {
   Typography,
   Button,
 } from '@material-tailwind/react'
+import { deleteProduct, getProduct, updateProduct } from '../api/products'
 
-export default function product() {
+export async function loaderProduct({ params }) {
+  const product = await getProduct(params.productId)
+
+  if (!product) {
+    throw new Response('', {
+      status: 404,
+      statusText: 'Not Found',
+    })
+  }
+
+  return { product }
+}
+
+export async function actionUpdateProduct({ request, params }) {
+  const formData = await request.formData()
+
+  return updateProduct(params.productId, {
+    favorite: formData.get('favorite') === 'true',
+  })
+}
+
+export async function actionDeleteProduct({ params }) {
+  await deleteProduct(params.productId)
+
+  return redirect('/')
+}
+
+export default function Product() {
   const { product } = useLoaderData()
 
   return (
