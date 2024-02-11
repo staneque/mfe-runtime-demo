@@ -39,11 +39,8 @@ export default function Root() {
     <>
       <div
         id="sidebar"
-        className="flex flex-col w-80 p-5 border-r border-gray-400"
+        className="flex flex-col w-80 px-5 py-10  border-r border-gray-400"
       >
-        <Typography variant="h5" className="py-2">
-          Products
-        </Typography>
         <div className="mb-7">
           <Form id="search-form" role="search" className="mb-4">
             <Input
@@ -81,11 +78,7 @@ export default function Root() {
                   className="py-3 pr-4 pl-4"
                   selected={product.id === useParams.productId}
                 >
-                  {product.first ? (
-                    product.first || product.last
-                  ) : (
-                    <i>No Name</i>
-                  )}
+                  {product.productName || <i>No Name</i>}
 
                   <ListItemSuffix>{product.favorite ? '★' : ''}</ListItemSuffix>
                 </ListItem>

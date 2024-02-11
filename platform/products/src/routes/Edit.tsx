@@ -21,8 +21,8 @@ export default function EditProduct() {
         placeholder="Do epic shit"
         aria-label="Product name"
         type="text"
-        name="first"
-        defaultValue={product.first}
+        name="productName"
+        defaultValue={product.productName}
       />
 
       <Input
@@ -30,23 +30,23 @@ export default function EditProduct() {
         placeholder="poster"
         aria-label="product type"
         type="text"
-        name="last"
-        defaultValue={product.last}
+        name="productType"
+        defaultValue={product.productType}
       />
 
       <Input
-        placeholder="https://example.com/avatar.jpg"
+        placeholder="https://example.com/123456.jpg"
         label="Image address"
         aria-label="Product image"
         type="text"
         name="productImage"
-        defaultValue={product.avatar}
+        defaultValue={product.productImage}
       />
 
       <Textarea
-        name="notes"
+        name="productDescription"
         label="Description"
-        defaultValue={product.notes}
+        defaultValue={product.productDescription}
         rows={6}
       />
 

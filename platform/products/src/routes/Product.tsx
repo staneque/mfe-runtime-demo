@@ -12,11 +12,12 @@ import {
 
 export default function product() {
   const { product } = useLoaderData()
+  console.log(product)
 
   return (
     <Card id="product" className="mt-6 w-30">
       <CardHeader color="blue-gray" className="relative h-56">
-        <img src={product.avatar || null} />
+        <img src={product.productImage} />
 
         <Favorite
           size="large"
@@ -26,17 +27,19 @@ export default function product() {
       </CardHeader>
 
       <CardBody>
-        {product.first && (
+        {product.productName && (
           <Typography variant="h5" color="blue-gray">
-            {product.first}
+            {product.productName}
           </Typography>
         )}
-        {product.last && (
+        {product.productType && (
           <Typography variant="lead" className="mb-2">
-            {product.last}
+            {product.productType}
           </Typography>
         )}
-        {product.notes && <Typography>{product.notes}</Typography>}
+        {product.productDescription && (
+          <Typography>{product.productDescription}</Typography>
+        )}
 
         <CardFooter className="flex mt-5 p-0">
           <Form action="edit" className="mr-4">
