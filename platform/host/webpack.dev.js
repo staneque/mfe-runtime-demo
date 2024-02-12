@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common')
 
 const devConfig = {
@@ -16,6 +17,12 @@ const devConfig = {
     historyApiFallback: true,
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: 'host',
+      remotes: {
+        cms: 'cms@http://localhost:8081/remoteEntry.js',
+      },
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),

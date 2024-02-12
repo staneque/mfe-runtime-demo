@@ -51,7 +51,7 @@ export default function Root() {
     new URLSearchParams(navigation.location.search).has('query')
 
   return (
-    <>
+    <div className="flex h-full">
       <div
         id="sidebar"
         className="flex flex-col w-80 px-5 py-10  border-r border-gray-400"
@@ -115,6 +115,6 @@ export default function Root() {
       >
         <Outlet />
       </div>
-    </>
+    </div>
   )
 }

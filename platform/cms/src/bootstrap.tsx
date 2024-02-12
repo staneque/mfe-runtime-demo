@@ -16,7 +16,7 @@ const mount = (el: HTMLElement) => {
   )
 }
 
-const localRoot = document.getElementById('products-local-root') as HTMLElement
+const localRoot = document.getElementById('products-local-root')
 
 if (localRoot) {
   console.log('found root', localRoot)
