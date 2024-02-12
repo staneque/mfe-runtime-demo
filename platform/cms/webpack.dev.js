@@ -7,13 +7,13 @@ const commonConfig = require('./webpack.common')
 const devConfig = {
   mode: 'development',
   output: {
-    // Fixes the React router issue on hard refresh
-    // https://github.com/remix-run/react-router/issues/676#issuecomment-174073981,
-    // https://github.com/react-boilerplate/react-boilerplate/issues/113
     publicPath: 'auto',
   },
   devServer: {
     port: 8081,
+    // React router issues on hard refresh
+    // https://github.com/remix-run/react-router/issues/676#issuecomment-174073981,
+    // https://github.com/react-boilerplate/react-boilerplate/issues/113
     historyApiFallback: true,
   },
   plugins: [

@@ -60,7 +60,6 @@ export default function Root() {
           <Form id="search-form" role="search" className="mb-4">
             <Input
               id="q"
-              className={`${searching ? 'loading' : ''}`}
               aria-label="Search product"
               label="Search product"
               placeholder="Search"
@@ -75,8 +74,9 @@ export default function Root() {
                 })
               }}
             />
-            <div id="search-spinner" aria-hidden hidden={!searching} />
-            <div className="sr-only" aria-live="polite"></div>
+            {/* TODO: spinner */}
+            {/* <div id="search-spinner" aria-hidden hidden={!searching} />
+            <div className="sr-only" aria-live="polite"></div> */}
           </Form>
           <Form method="post">
             <Button type="submit">Add product</Button>
@@ -107,12 +107,8 @@ export default function Root() {
         )}
       </div>
 
-      <div
-        id="detail"
-        className={`${
-          navigation.state === 'loading' ? 'loading' : ''
-        } flex-1 p-10`}
-      >
+      {/* TODO: ${ navigation.state === 'loading' ? 'wtf' : ''} */}
+      <div id="detail" className={'flex-1 p-10 overflow-auto'}>
         <Outlet />
       </div>
     </div>
