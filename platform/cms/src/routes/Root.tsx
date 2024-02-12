@@ -15,6 +15,7 @@ import {
   List,
   ListItem,
   ListItemSuffix,
+  Spinner,
 } from '@material-tailwind/react'
 import { getProducts, createProduct } from '../api/products'
 
@@ -62,6 +63,7 @@ export default function Root() {
               type="search"
               name="query"
               defaultValue={query}
+              icon={searching && <Spinner className="h-4 w-4" />}
               onChange={e => {
                 const isFirstSearch = query == null
 
@@ -70,9 +72,6 @@ export default function Root() {
                 })
               }}
             />
-            {/* TODO: spinner */}
-            {/* <div id="search-spinner" aria-hidden hidden={!searching} />
-            <div className="sr-only" aria-live="polite"></div> */}
           </Form>
           <Form method="post">
             <Button type="submit">Add product</Button>

@@ -1,5 +1,5 @@
-import * as ReactDOM from 'react-dom/client'
 import React from 'react'
+import * as ReactDOM from 'react-dom/client'
 import { ThemeProvider } from '@material-tailwind/react'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
@@ -18,7 +18,6 @@ const mount = (el: HTMLElement) => {
 const localRoot = document.getElementById('products-local-root')
 
 if (localRoot) {
-  console.log('found root', localRoot)
   mount(localRoot)
 }
 
