@@ -22,14 +22,17 @@ import { matchSorter } from 'match-sorter'
 
 import sortBy from 'sort-by'
 
-export async function getProducts(query) {
+export async function getProducts(query = '') {
   await fakeNetwork(`getProducts:${query}`)
 
   let products = await localforage.getItem('products')
+
   if (!products) products = []
 
   if (query) {
-    products = matchSorter(products, query, { keys: ['first', 'last'] })
+    products = matchSorter(products, query, {
+      keys: ['productName', 'productType'],
+    })
   }
 
   return products.sort(sortBy('last', 'createdAt'))
@@ -100,6 +103,7 @@ async function fakeNetwork(key) {
   }
 
   fakeCache[key] = true
+
   return new Promise(res => {
     setTimeout(res, Math.random() * 200)
   })

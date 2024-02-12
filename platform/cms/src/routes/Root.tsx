@@ -52,14 +52,10 @@ export default function Root() {
 
   return (
     <div className="flex h-full">
-      <div
-        id="sidebar"
-        className="flex flex-col w-80 px-5 py-10  border-r border-gray-400"
-      >
+      <div className="flex flex-col w-80 px-5 py-10  border-r border-gray-400">
         <div className="mb-7">
-          <Form id="search-form" role="search" className="mb-4">
+          <Form role="search" className="mb-4">
             <Input
-              id="q"
               aria-label="Search product"
               label="Search product"
               placeholder="Search"
@@ -107,8 +103,11 @@ export default function Root() {
         )}
       </div>
 
-      {/* TODO: ${ navigation.state === 'loading' ? 'wtf' : ''} */}
-      <div id="detail" className={'flex-1 p-10 overflow-auto'}>
+      <div
+        className={`flex-1 p-10 overflow-auto ${
+          navigation.state === 'loading' ? 'opacity-20' : ''
+        }`}
+      >
         <Outlet />
       </div>
     </div>

@@ -42,7 +42,7 @@ export default function Product() {
   const { product } = useLoaderData()
 
   return (
-    <Card id="product" className="mt-6 w-30">
+    <Card className="mt-6 w-30">
       <CardHeader color="blue-gray" className="relative h-96">
         <img
           src={product.productImage}
