@@ -19,13 +19,22 @@ SIMPLE MATCH: If the item has letters in the same order as the letters of the gi
 Furthermore, if the item is a closer match, it will rank higher 
 (ex. ua matches Uruguay more closely than United States of America, therefore Uruguay will be ordered before United States of America) */
 import { matchSorter } from 'match-sorter'
-
 import sortBy from 'sort-by'
 
-export async function getProducts(query = '') {
+interface Product {
+  id: string
+  createdAt: number
+  productName?: string
+  productDescription?: string
+  productImage?: string
+}
+
+type Products = Product[]
+
+export async function getProducts(query: string | null = '') {
   await fakeNetwork(`getProducts:${query}`)
 
-  let products = await localforage.getItem('products')
+  let products: Products | null = await localforage.getItem('products')
 
   if (!products) products = []
 
@@ -52,19 +61,22 @@ export async function createProduct() {
   return product
 }
 
-export async function getProduct(id) {
+export async function getProduct(id: string) {
   await fakeNetwork(`product:${id}`)
-  const products = await localforage.getItem('products')
-  const product = products.find(product => product.id === id)
+  const products = await localforage.getItem<Products>('products')
+
+  const product = products?.find(product => product.id === id)
+
   return product ?? null
 }
 
-export async function updateProduct(id, updates) {
+export async function updateProduct(id: string, updates: Product) {
   await fakeNetwork()
-  const products = await localforage.getItem('products')
-  const product = products.find(product => product.id === id)
+  const products = await localforage.getItem<Products>('products')
 
-  if (!product) throw new Error('No product found for', id)
+  const product = products?.find(product => product.id === id)
+
+  if (!products || !product) throw new Error(`No product found for ${id}`)
 
   Object.assign(product, updates)
 
@@ -73,9 +85,12 @@ export async function updateProduct(id, updates) {
   return product
 }
 
-export async function deleteProduct(id) {
-  let products = await localforage.getItem('products')
-  let index = products.findIndex(product => product.id === id)
+export async function deleteProduct(id: string) {
+  const products = await localforage.getItem<Products>('products')
+
+  if (!products) return false
+
+  const index = products?.findIndex(product => product.id === id)
 
   if (index > -1) {
     products.splice(index, 1)
@@ -84,16 +99,17 @@ export async function deleteProduct(id) {
 
     return true
   }
+
   return false
 }
 
-function set(products) {
+function set(products: Products) {
   return localforage.setItem('products', products)
 }
 
-let fakeCache = {}
+let fakeCache: Record<string, boolean> = {}
 
-async function fakeNetwork(key) {
+async function fakeNetwork(key = '') {
   if (!key) {
     fakeCache = {}
   }

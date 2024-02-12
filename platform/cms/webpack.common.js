@@ -12,10 +12,7 @@ module.exports = {
               '@babel/preset-env',
               '@babel/preset-typescript',
             ],
-            plugins: [
-              '@babel/plugin-transform-typescript',
-              '@babel/plugin-transform-runtime',
-            ],
+            plugins: ['@babel/plugin-transform-runtime'],
           },
         },
       },
