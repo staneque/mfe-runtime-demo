@@ -3,6 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common')
+const packageJson = require('./package.json')
 
 const devConfig = {
   mode: 'development',
@@ -22,6 +23,7 @@ const devConfig = {
       remotes: {
         cms: 'cms@http://localhost:8081/remoteEntry.js',
       },
+      shared: packageJson.dependencies,
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
