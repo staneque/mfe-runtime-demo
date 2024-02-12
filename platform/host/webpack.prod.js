@@ -7,7 +7,7 @@ const packageJson = require('./package.json')
 const prodConfig = {
   mode: 'production',
   output: {
-    publicPath: '/',
+    publicPath: '/host/latest',
   },
   plugins: [
     new ModuleFederationPlugin({
