@@ -4,6 +4,8 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const commonConfig = require('./webpack.common')
 const packageJson = require('./package.json')
 
+const remoteAppDomain = process.env.REMOTE_APP_DOMAIN
+
 const prodConfig = {
   mode: 'production',
   output: {
@@ -13,7 +15,7 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        cms: 'cms@http://localhost:8081/remoteEntry.js',
+        cms: `cms@${remoteAppDomain}/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
