@@ -37,5 +37,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Deploy to the bucket
+      - name: Deploy resoources
         run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/host/latest
+
+      - name: Set no max-edge for index.html
+        run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET_NAME }}/host/latest/index.html cp s3://${{ secrets.AWS_S3_BUCKET_NAME }}/host/latest/index.html --metadata-directive REPLACE --cache-control max-age=0 --content-type "text/html"
+
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --path "/host/latest/index.html"
