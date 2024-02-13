@@ -29,7 +29,8 @@ jobs:
         run: |
           npm install
           npm run build
-          env: REMOTE_APP_DOMAIN: ${{ secrets.REMOTE_APP_DOMAIN }}
+          env: 
+            REMOTE_APP_DOMAIN: ${{ secrets.REMOTE_APP_DOMAIN }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
