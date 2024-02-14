@@ -1,5 +1,10 @@
 import React from 'react'
-import { createBrowserRouter, useRouteError } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  createMemoryRouter,
+  useRouteError,
+} from 'react-router-dom'
+import { NavigationManager } from './components/NavigationManger'
 import Root from './routes/Root'
 import Product from './routes/Product'
 import Edit from './routes/EditProduct'
@@ -19,40 +24,48 @@ function ErrorBoundary() {
   return <div>EГГОГ!</div>
 }
 
-export const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <Root />,
-      errorElement: <ErrorBoundary />,
-      loader: loaderRoot,
-      action: actionCreateProduct,
-      children: [
-        {
-          children: [
-            { index: true, element: <Index /> },
-            {
-              path: '/products/:productId',
-              element: <Product />,
-              loader: loaderProduct,
-              action: actionUpdateProduct,
-            },
-            {
-              path: 'products/:productId/edit',
-              element: <Edit />,
-              loader: loaderProduct,
-              action: actionEdit,
-            },
-            {
-              path: 'products/:productId/destroy',
-              action: actionDeleteProduct,
-            },
-          ],
-        },
-      ],
-    },
-  ],
+export const routes = [
   {
-    basename: '/cms',
+    path: '/',
+    element: (
+      <NavigationManager>
+        <Root />
+      </NavigationManager>
+    ),
+    errorElement: <ErrorBoundary />,
+    loader: loaderRoot,
+    action: actionCreateProduct,
+    children: [
+      {
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: '/products/:productId',
+            element: <Product />,
+            loader: loaderProduct,
+            action: actionUpdateProduct,
+          },
+          {
+            path: 'products/:productId/edit',
+            element: <Edit />,
+            loader: loaderProduct,
+            action: actionEdit,
+          },
+          {
+            path: 'products/:productId/destroy',
+            action: actionDeleteProduct,
+          },
+        ],
+      },
+    ],
+  },
+]
+
+export const createRouter = (type: 'memory' | 'browser', basename = '/') => {
+  switch (type) {
+    case 'memory':
+      return createMemoryRouter(routes, { basename })
+    default:
+      return createBrowserRouter(routes, { basename })
   }
-)
+}
