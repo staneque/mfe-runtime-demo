@@ -1,13 +1,25 @@
 import React from 'react'
 import CMS from './components/СMS'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <div className="flex flex-col h-full">
-      <div className="h-20 text-center flex shrink-0 justify-center items-center text-white bg-teal-200 red">
-        HELLO, I'M HOST
-      </div>
-      <CMS />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            element={
+              <>
+                <Header />
+                <Outlet />
+              </>
+            }
+          >
+            <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/cms" element={<CMS />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
