@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common')
-const packageJson = require('./package.json')
+const deps = require('./package.json').dependencies
 
 const prodConfig = {
   mode: 'production',
@@ -17,7 +17,21 @@ const prodConfig = {
       exposes: {
         './cms': './src/bootstrap',
       },
-      shared: packageJson.dependencies,
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: deps['react-router-dom'],
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',

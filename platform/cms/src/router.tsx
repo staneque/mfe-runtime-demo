@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, useRouteError } from 'react-router-dom'
 import Root from './routes/Root'
 import Product from './routes/Product'
 import Edit from './routes/EditProduct'
@@ -12,17 +12,23 @@ import {
   loaderProduct,
 } from './routes/Product'
 
+function ErrorBoundary() {
+  let error = useRouteError()
+  console.error(error)
+
+  return <div>EГГОГ!</div>
+}
+
 export const router = createBrowserRouter(
   [
     {
       path: '/',
       element: <Root />,
-      errorElement: <div>Error</div>,
+      errorElement: <ErrorBoundary />,
       loader: loaderRoot,
       action: actionCreateProduct,
       children: [
         {
-          errorElement: <div>Error</div>,
           children: [
             { index: true, element: <Index /> },
             {

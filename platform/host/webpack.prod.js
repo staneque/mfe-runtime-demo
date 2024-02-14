@@ -17,7 +17,21 @@ const prodConfig = {
       remotes: {
         cms: `cms@${remoteAppDomain}/cms/latest/remoteEntry.js`,
       },
-      shared: packageJson.dependencies,
+      shared: {
+        ...packageJson.dependencies,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: deps['react-router-dom'],
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
