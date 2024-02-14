@@ -12,36 +12,41 @@ import {
   loaderProduct,
 } from './routes/Product'
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Root />,
+      errorElement: <div>Error</div>,
+      loader: loaderRoot,
+      action: actionCreateProduct,
+      children: [
+        {
+          errorElement: <div>Error</div>,
+          children: [
+            { index: true, element: <Index /> },
+            {
+              path: '/products/:productId',
+              element: <Product />,
+              loader: loaderProduct,
+              action: actionUpdateProduct,
+            },
+            {
+              path: 'products/:productId/edit',
+              element: <Edit />,
+              loader: loaderProduct,
+              action: actionEdit,
+            },
+            {
+              path: 'products/:productId/destroy',
+              action: actionDeleteProduct,
+            },
+          ],
+        },
+      ],
+    },
+  ],
   {
-    path: '/',
-    element: <Root />,
-    errorElement: <div>Error</div>,
-    loader: loaderRoot,
-    action: actionCreateProduct,
-    children: [
-      {
-        errorElement: <div>Error</div>,
-        children: [
-          { index: true, element: <Index /> },
-          {
-            path: '/products/:productId',
-            element: <Product />,
-            loader: loaderProduct,
-            action: actionUpdateProduct,
-          },
-          {
-            path: 'products/:productId/edit',
-            element: <Edit />,
-            loader: loaderProduct,
-            action: actionEdit,
-          },
-          {
-            path: 'products/:productId/destroy',
-            action: actionDeleteProduct,
-          },
-        ],
-      },
-    ],
-  },
-])
+    basename: '/cms',
+  }
+)
