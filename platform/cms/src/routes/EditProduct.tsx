@@ -21,9 +21,7 @@ export default function EditProduct() {
       id="product-form"
       className="flex w-[500px] flex-col gap-6 mx-auto"
     >
-      <Typography placeholder="Edit product" variant="h4">
-        Edit product
-      </Typography>
+      <Typography variant="h4">Edit product</Typography>
 
       <Input
         label="Product name"

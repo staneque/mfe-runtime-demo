@@ -1,11 +1,9 @@
 import React from 'react'
 import {
-  MemoryRouter,
   createBrowserRouter,
   createMemoryRouter,
   useRouteError,
 } from 'react-router-dom'
-import { NavigationManager } from './components/NavigationManager'
 import Root from './routes/Root'
 import Product from './routes/Product'
 import Edit from './routes/EditProduct'

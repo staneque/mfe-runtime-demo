@@ -13,7 +13,7 @@ const render = (el: HTMLElement, router: ReturnType<typeof createRouter>) => {
   )
 }
 
-const localRoot = document.getElementById('cms-local-root')
+const localRoot = document.getElementById('auth-local-root')
 
 if (localRoot) {
   render(localRoot, createRouter('browser'))

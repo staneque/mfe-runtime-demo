@@ -15,12 +15,7 @@ function Header() {
 
       <span className="flex-1">HELLO, I'M HOST</span>
 
-      <Button
-        placeholder="Login"
-        variant="outlined"
-        color="white"
-        className="ml-auto"
-      >
+      <Button variant="outlined" color="white" className="ml-auto">
         Login
       </Button>
     </div>
