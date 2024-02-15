@@ -1,5 +1,7 @@
 # Build-time micro frontend architecture examples with Module Federation Webpack plugin
 
+[Live demo](https://djuyc1jmeh0tr.cloudfront.net)
+
 Each top-level folder contains a separate project. Running `npm install` from there will also install dependencies for all the related apps in the subfolders. So, you can launch the desired project like this:
 
 ```

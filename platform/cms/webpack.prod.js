@@ -15,7 +15,7 @@ const prodConfig = {
       name: 'cms',
       filename: 'remoteEntry.js',
       exposes: {
-        './cms': './src/bootstrap',
+        './Cms': './src/bootstrap',
       },
       shared: {
         ...deps,
