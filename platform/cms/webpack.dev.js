@@ -8,7 +8,7 @@ const deps = require('./package.json').dependencies
 const devConfig = {
   mode: 'development',
   output: {
-    publicPath: 'auto',
+    publicPath: 'http://localhost:8081/',
   },
   devServer: {
     port: 8081,
@@ -22,7 +22,7 @@ const devConfig = {
       name: 'cms',
       filename: 'remoteEntry.js',
       exposes: {
-        './cms': './src/bootstrap',
+        './Cms': './src/bootstrap',
       },
       shared: {
         ...deps,
@@ -34,10 +34,10 @@ const devConfig = {
           singleton: true,
           requiredVersion: deps['react-dom'],
         },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom'],
-        },
+        // 'react-router-dom': {
+        //   singleton: true,
+        //   requiredVersion: deps['react-router-dom'],
+        // },
       },
     }),
     new HtmlWebpackPlugin({

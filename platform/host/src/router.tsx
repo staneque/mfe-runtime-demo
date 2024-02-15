@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from './components/Layout'
+import { NavigationManager } from './components/NavigationManager'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 
@@ -14,10 +15,9 @@ export const routes = [
         element: <h1>HOME</h1>,
       },
       {
-        index: true,
-        path: `/cms`,
+        path: `/cms/*`,
         element: (
-          <Suspense fallback="Loading...">
+          <Suspense fallback="Loading cms...">
             <CMSLazy />
           </Suspense>
         ),

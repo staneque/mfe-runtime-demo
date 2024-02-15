@@ -5,24 +5,23 @@ import { RouterProvider } from 'react-router-dom'
 import { createRouter } from './router'
 import './styles.css'
 
-const mount = (el: HTMLElement, router: ReturnType<typeof createRouter>) => {
+const render = (el: HTMLElement, router: ReturnType<typeof createRouter>) => {
   ReactDOM.createRoot(el).render(
-    <React.StrictMode>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </React.StrictMode>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   )
 }
 
 const localRoot = document.getElementById('products-local-root')
 
 if (localRoot) {
-  const router = createRouter('browser')
-  mount(localRoot, router)
+  render(localRoot, createRouter('browser'))
 }
 
-const router = createRouter('memory', '/cms')
-const mountMemoryRouter = (el: HTMLElement) => mount(el, router)
+const mount = (el: HTMLElement, initialPath: string) => {
+  const router = createRouter('memory', initialPath)
+  render(el, router)
+}
 
-export { mountMemoryRouter as mount }
+export { mount }

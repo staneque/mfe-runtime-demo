@@ -1,10 +1,11 @@
 import React from 'react'
 import {
+  MemoryRouter,
   createBrowserRouter,
   createMemoryRouter,
   useRouteError,
 } from 'react-router-dom'
-import { NavigationManager } from './components/NavigationManger'
+import { NavigationManager } from './components/NavigationManager'
 import Root from './routes/Root'
 import Product from './routes/Product'
 import Edit from './routes/EditProduct'
@@ -46,13 +47,13 @@ export const routes = [
             action: actionUpdateProduct,
           },
           {
-            path: 'products/:productId/edit',
+            path: '/products/:productId/edit',
             element: <Edit />,
             loader: loaderProduct,
             action: actionEdit,
           },
           {
-            path: 'products/:productId/destroy',
+            path: '/products/:productId/destroy',
             action: actionDeleteProduct,
           },
         ],
@@ -61,11 +62,26 @@ export const routes = [
   },
 ]
 
-export const createRouter = (type: 'memory' | 'browser', basename = '/') => {
+// const memRoutes = [
+//   {
+//     path: '/',
+//     element: <div>CMS LOL</div>,
+//   },
+// ]
+
+// export const memoryRouter = createMemoryRouter(memRoutes, { basename: '/cms' })
+
+export const createRouter = (
+  type: 'memory' | 'browser',
+  initialPathname?: string
+) => {
   switch (type) {
     case 'memory':
-      return createMemoryRouter(routes, { basename })
+      return createMemoryRouter(routes, {
+        initialEntries: [initialPathname || '/'],
+      })
+    case 'browser':
     default:
-      return createBrowserRouter(routes, { basename })
+      return createBrowserRouter(routes)
   }
 }

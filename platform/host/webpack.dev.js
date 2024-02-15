@@ -8,7 +8,7 @@ const deps = require('./package.json').dependencies
 const devConfig = {
   mode: 'development',
   output: {
-    publicPath: '/',
+    publicPath: 'http://localhost:8080/',
   },
   devServer: {
     port: 8080,
@@ -33,10 +33,10 @@ const devConfig = {
           singleton: true,
           requiredVersion: deps['react-dom'],
         },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom'],
-        },
+        // 'react-router-dom': {
+        //   singleton: true,
+        //   requiredVersion: deps['react-router-dom'],
+        // },
       },
     }),
     new HtmlWebpackPlugin({
