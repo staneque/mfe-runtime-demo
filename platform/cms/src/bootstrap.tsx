@@ -19,8 +19,9 @@ if (localRoot) {
   render(localRoot, createRouter('browser'))
 }
 
-const mount = (el: HTMLElement, initialPath: string) => {
-  const router = createRouter('memory', initialPath)
+const mount = (el: HTMLElement, initialPathname: string) => {
+  const router = createRouter('memory', initialPathname)
+
   render(el, router)
 }
 

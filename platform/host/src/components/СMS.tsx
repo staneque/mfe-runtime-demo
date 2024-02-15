@@ -8,24 +8,26 @@ function CMS() {
   const location = useLocation()
   const refRoot = useRef<HTMLDivElement>(null)
   const isFirstRun = useRef(true)
-  const basename = config.remoteBaseName.CMS
+  const remotePathnamePrefix = config.remotePathnamePrefix.CMS
 
   useRoutersSync({
     listenEventName: '@remoteAppNavigation',
     publishEventName: '@hostNavigation',
-    basename,
+    remotePathnamePrefix,
   })
 
   useEffect(() => {
-    // useEffect runs twice in development with strict mode,
-    // this renders the remote app twice into the same node
     if (!isFirstRun.current) {
       return
     }
 
+    console.log(
+      'REPLACED',
+      location.pathname.replace(config.remotePathnamePrefix.CMS, '')
+    )
     mount(
       refRoot.current,
-      location.pathname.replace(config.remoteBaseName.CMS, '')
+      location.pathname.replace(config.remotePathnamePrefix.CMS, '')
     )
 
     isFirstRun.current = false

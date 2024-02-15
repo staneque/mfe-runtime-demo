@@ -1,5 +1,5 @@
 export default {
-  remoteBaseName: {
+  remotePathnamePrefix: {
     CMS: '/cms',
   },
 }

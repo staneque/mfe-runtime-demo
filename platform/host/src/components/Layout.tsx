@@ -5,12 +5,12 @@ import config from '../config'
 import { useRoutersSync } from '../hooks/useRoutersSync'
 
 function Layout() {
-  const basename = config.remoteBaseName.CMS
+  const remotePathnamePrefix = config.remotePathnamePrefix.CMS
 
   useRoutersSync({
     listenEventName: '@remoteAppNavigation',
     publishEventName: '@hostNavigation',
-    basename,
+    remotePathnamePrefix,
   })
 
   return (

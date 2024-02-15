@@ -17,6 +17,7 @@ import {
   actionUpdateProduct,
   loaderProduct,
 } from './routes/Product'
+import RouterSync from './routes/RouterSync'
 
 function ErrorBoundary() {
   let error = useRouteError()
@@ -29,9 +30,9 @@ export const routes = [
   {
     path: '/',
     element: (
-      <NavigationManager>
+      <RouterSync>
         <Root />
-      </NavigationManager>
+      </RouterSync>
     ),
     errorElement: <ErrorBoundary />,
     loader: loaderRoot,
@@ -61,15 +62,6 @@ export const routes = [
     ],
   },
 ]
-
-// const memRoutes = [
-//   {
-//     path: '/',
-//     element: <div>CMS LOL</div>,
-//   },
-// ]
-
-// export const memoryRouter = createMemoryRouter(memRoutes, { basename: '/cms' })
 
 export const createRouter = (
   type: 'memory' | 'browser',

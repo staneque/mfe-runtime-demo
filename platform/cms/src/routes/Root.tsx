@@ -18,6 +18,7 @@ import {
   Spinner,
 } from '@material-tailwind/react'
 import { getProducts, createProduct } from '../api/products'
+import { useRoutersSync } from '../hooks/useRouterSync'
 
 export async function loaderRoot({ request }) {
   const url = new URL(request.url)
