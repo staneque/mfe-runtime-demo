@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRoutersSync } from '../hooks/useRoutersSync'
-import { mount } from 'cms/Cms'
+import { mount } from 'auth/Auth'
 import config from '../config'
 
-const remotePathnamePrefix = config.remotePathnamePrefix.CMS
+const remotePathnamePrefix = config.remotePathnamePrefix.Auth
 
 function CMS() {
   const location = useLocation()
@@ -12,7 +12,7 @@ function CMS() {
   const isFirstRun = useRef(true)
 
   useRoutersSync({
-    listenEventName: '@remoteAppNavigation-cms',
+    listenEventName: '@remoteAppNavigation-auth',
     publishEventName: '@hostNavigation',
     remotePathnamePrefix,
   })
@@ -27,9 +27,7 @@ function CMS() {
     isFirstRun.current = false
   }, [location])
 
-  return (
-    <div id="cms-mounting-point" className="flex-1 min-h-0" ref={refRoot} />
-  )
+  return <div id="auth-mounting-point" className="" ref={refRoot} />
 }
 
 export default CMS

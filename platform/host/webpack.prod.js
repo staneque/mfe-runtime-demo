@@ -16,6 +16,7 @@ const prodConfig = {
       name: 'host',
       remotes: {
         cms: `cms@${remoteAppDomain}/cms/latest/remoteEntry.js`,
+        auth: `auth@${remoteAppDomain}/auth/latest/remoteEntry.js`,
       },
       shared: {
         ...deps,

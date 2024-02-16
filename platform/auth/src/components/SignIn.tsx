@@ -13,9 +13,9 @@ export default function SignIn({ onSignIn }) {
     <div className="max-w-96 mx-auto">
       <div className="mt-8 flex flex-col items-center">
         <Avatar
-          placeholder="avatar"
           className="m-1"
-          src="https://docs.material-tailwind.com/img/face-2.jpg"
+          variant="rounded"
+          src="https://uxwing.com/wp-content/themes/uxwing/download/editing-user-action/user-account-login-icon.png"
           alt="avatar"
         />
 
@@ -57,7 +57,7 @@ export default function SignIn({ onSignIn }) {
             Sign In
           </Button>
 
-          <Link className="block mt-2" to="/auth/signup">
+          <Link className="block mt-2" to="/signup">
             Don't have an account? <span className="underline">Sign Up</span>
           </Link>
         </form>

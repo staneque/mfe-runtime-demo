@@ -4,7 +4,7 @@ import { useRoutersSync } from '../hooks/useRouterSync'
 function RouterSync({ children }: { children: React.ReactNode }) {
   useRoutersSync({
     listenEventName: '@hostNavigation',
-    publishEventName: '@remoteAppNavigation-cms',
+    publishEventName: '@remoteAppNavigation-auth', // TODO: extract event names to constants
   })
 
   return children

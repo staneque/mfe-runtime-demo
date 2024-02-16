@@ -1,11 +1,13 @@
 import React from 'react'
 import {
+  Outlet,
   createBrowserRouter,
   createMemoryRouter,
   useRouteError,
 } from 'react-router-dom'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import RouterSync from './components/RouterSync'
 
 function ErrorBoundary() {
   let error = useRouteError()
@@ -16,12 +18,22 @@ function ErrorBoundary() {
 
 export const routes = [
   {
-    path: '/auth/signin',
-    element: <SignIn onSignIn={() => null} />,
-  },
-  {
-    path: '/auth/signup',
-    element: <SignUp onSignUp={() => null} />,
+    path: '/',
+    element: (
+      <RouterSync>
+        <Outlet />
+      </RouterSync>
+    ),
+    children: [
+      {
+        path: '/signin',
+        element: <SignIn onSignIn={() => null} />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp onSignUp={() => null} />,
+      },
+    ],
   },
 ]
 

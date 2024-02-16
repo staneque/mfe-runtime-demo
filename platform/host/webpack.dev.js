@@ -22,6 +22,7 @@ const devConfig = {
       name: 'host',
       remotes: {
         cms: 'cms@http://localhost:8081/remoteEntry.js',
+        auth: 'auth@http://localhost:8082/remoteEntry.js',
       },
       shared: {
         ...deps,
