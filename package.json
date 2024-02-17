@@ -7,10 +7,14 @@
     "start": "concurrently 'npm start --prefix dashboard' 'npm start --prefix cms' 'npm start --prefix auth' 'npm start --prefix host'",
     "postinstall": "(cd host && npm install); (cd cms && npm install); (cd dashboard && npm install); (cd auth && npm install);"
   },
-  "keywords": [ ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2"
   }
 }
