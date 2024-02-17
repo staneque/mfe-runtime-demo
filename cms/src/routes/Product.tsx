@@ -1,4 +1,3 @@
-import React from 'react'
 import { Form, redirect, useLoaderData } from 'react-router-dom'
 import Favorite from '../components/Favorite'
 import {

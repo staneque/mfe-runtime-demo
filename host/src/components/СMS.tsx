@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 import { useRoutersSync } from '../hooks/useRoutersSync'
 import { mount } from 'cms/Cms'

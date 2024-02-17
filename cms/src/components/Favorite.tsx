@@ -1,4 +1,3 @@
-import React from 'react'
 import { useFetcher } from 'react-router-dom'
 
 export default function Favorite({ product, className = '', size = 'normal' }) {

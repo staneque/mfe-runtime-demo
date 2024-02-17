@@ -1,4 +1,3 @@
-import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { ThemeProvider } from '@material-tailwind/react'
 import { RouterProvider } from 'react-router-dom'

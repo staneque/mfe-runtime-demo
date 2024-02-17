@@ -1,4 +1,3 @@
-import React from 'react'
 import { Form, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import { Input, Textarea, Typography, Button } from '@material-tailwind/react'
 import { updateProduct } from '../api/products'
