@@ -3,11 +3,11 @@ name: deploy-host-app
 on:
   push:
     branches: ['main']
-    paths: platform/host/**
+    paths: host/**
 
 defaults:
   run:
-    working-directory: platform/host
+    working-directory: host
 
 jobs:
   deploy:

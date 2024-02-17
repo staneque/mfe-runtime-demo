@@ -3,11 +3,11 @@ name: deploy-cms-app
 on:
   push:
     branches: ['main']
-    paths: platform/cms/**
+    paths: cms/**
 
 defaults:
   run:
-    working-directory: platform/cms
+    working-directory: cms
 
 jobs:
   deploy:
