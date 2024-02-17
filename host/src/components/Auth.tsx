@@ -12,8 +12,8 @@ function CMS() {
   const isFirstRun = useRef(true)
 
   useRoutersSync({
-    listenEventName: '@remoteAppNavigation-auth',
-    publishEventName: '@hostNavigation',
+    listenEventName: '@navigation.remote.auth',
+    publishEventName: '@navigation.host',
     remotePathnamePrefix,
   })
 

@@ -1,14 +1,23 @@
 import React, { lazy, Suspense } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, useRouteError } from 'react-router-dom'
 import Layout from './components/Layout'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 const AuthLazy = lazy(() => import('./components/Auth'))
 
+function ErrorBoundary() {
+  let error = useRouteError()
+
+  console.error('HOST APP', error)
+
+  return <div>EГГОГ- HOST</div>
+}
+
 export const routes = [
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         index: true,

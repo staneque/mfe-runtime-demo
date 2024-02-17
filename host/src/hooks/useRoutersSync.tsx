@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import PubSub from 'pubsub-js'
 
 export const useRoutersSync = ({
   listenEventName,
@@ -8,6 +9,21 @@ export const useRoutersSync = ({
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const handlerRef = useRef<(data: string) => void>(() => {})
+
+  const handleNavigation = pathname => {
+    const newPathname = `${remotePathnamePrefix}${pathname}`
+
+    if (location.pathname === pathname) {
+      return
+    }
+
+    navigate(newPathname)
+  }
+
+  useEffect(() => {
+    handlerRef.current = handleNavigation
+  }, [location])
 
   // Subscribe to the remote app navigation events
   useEffect(() => {
@@ -15,35 +31,19 @@ export const useRoutersSync = ({
       `Host app subscribed to remote app on prefix ${remotePathnamePrefix}`
     )
 
-    const handleNavigation = (e: CustomEvent<string>) => {
-      const pathname = e.detail
-      const newPathname = `${remotePathnamePrefix}${pathname}`
+    const token = PubSub.subscribe(
+      listenEventName,
+      (_: string, pathname: string) => handlerRef.current(pathname)
+    )
 
-      if (location.pathname === newPathname) {
-        return
-      }
-
-      navigate(newPathname)
-    }
-
-    window.addEventListener(listenEventName, handleNavigation as EventListener)
-
-    return () => {
-      window.removeEventListener(
-        listenEventName,
-        handleNavigation as EventListener
-      )
-    }
-  }, [location, listenEventName, publishEventName, remotePathnamePrefix])
+    return () => PubSub.unsubscribe(token)
+  }, [listenEventName, publishEventName])
 
   // Notify the remote app
   useEffect(() => {
-    if (location.pathname.startsWith(remotePathnamePrefix)) {
-      window.dispatchEvent(
-        new CustomEvent(publishEventName, {
-          detail: location.pathname.replace(remotePathnamePrefix, ''),
-        })
-      )
-    }
+    PubSub.publish(
+      publishEventName,
+      location.pathname.replace(remotePathnamePrefix, '')
+    )
   }, [location])
 }

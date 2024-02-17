@@ -11,9 +11,9 @@ import RouterSync from './components/RouterSync'
 
 function ErrorBoundary() {
   let error = useRouteError()
-  console.error(error)
+  console.error("AUTH APP", error)
 
-  return <div>EГГОГ!</div>
+  return <div>EГГОГ - AUTH APP</div>
 }
 
 export const routes = [
@@ -24,6 +24,7 @@ export const routes = [
         <Outlet />
       </RouterSync>
     ),
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: '/signin',
