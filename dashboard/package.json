@@ -1,5 +1,5 @@
 {
-  "name": "sales",
+  "name": "dashboard",
   "version": "1.0.0",
   "scripts": {
     "start": "echo"

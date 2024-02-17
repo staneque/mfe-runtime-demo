@@ -1,16 +1,15 @@
-# Build-time micro frontend architecture examples with Module Federation Webpack plugin
+# Build-time micro frontend architecture example with Module Federation Webpack plugin.
+
+Remote apps utilize memory routers that synchronize with the host Browser Router through custom event subscriptions.
 
 [Live demo](https://djuyc1jmeh0tr.cloudfront.net)
 
-Each top-level folder contains a separate project. Running `npm install` from there will also install dependencies for all the related apps in the subfolders. So, you can launch the desired project like this:
-
 ```
-cd shop
 npm install
 npm start
 ```
 
-The host application is running on port `8080`. See the webpack output in your console for additional information.
+The host application is running locally on port `8080`.
 
 ### Gotchas
 

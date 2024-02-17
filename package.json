@@ -1,0 +1,16 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'npm start --prefix dashboard' 'npm start --prefix cms' 'npm start --prefix auth' 'npm start --prefix host'",
+    "postinstall": "(cd host && npm install); (cd cms && npm install); (cd dashboard && npm install); (cd auth && npm install);"
+  },
+  "keywords": [ ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
