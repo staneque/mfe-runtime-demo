@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, useRouteError } from 'react-router-dom'
 import Layout from './components/Layout'
+import Dashboard from './components/Dashboard'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 const AuthLazy = lazy(() => import('./components/Auth'))
@@ -36,6 +37,14 @@ export const routes = [
         element: (
           <Suspense fallback="Loading auth...">
             <AuthLazy />
+          </Suspense>
+        ),
+      },
+      {
+        path: `/dashboard`,
+        element: (
+          <Suspense fallback="Loading auth...">
+            <Dashboard />
           </Suspense>
         ),
       },

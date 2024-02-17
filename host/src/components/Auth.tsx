@@ -1,8 +1,10 @@
-import { useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useRef, useEffect, useState, useContext } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useRoutersSync } from '../hooks/useRoutersSync'
 import { mount } from 'auth/Auth'
+import { PubSub } from 'pubsub-js'
 import config from '../config'
+import { AuthContext } from '../App'
 
 const remotePathnamePrefix = config.remotePathnamePrefix.Auth
 
@@ -10,12 +12,21 @@ function CMS() {
   const location = useLocation()
   const refRoot = useRef<HTMLDivElement>(null)
   const isFirstRun = useRef(true)
+  const navigate = useNavigate()
+
+  const { isSignedIn } = useContext(AuthContext)
 
   useRoutersSync({
     listenEventName: '@navigation.remote.auth',
     publishEventName: '@navigation.host',
     remotePathnamePrefix,
   })
+
+  useEffect(() => {
+    if (isSignedIn) {
+      navigate('/dashboard')
+    }
+  }, [isSignedIn])
 
   useEffect(() => {
     if (!isFirstRun.current) {

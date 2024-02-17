@@ -6,8 +6,13 @@ import {
   Button,
   Checkbox,
 } from '@material-tailwind/react'
+import PubSub from 'pubsub-js'
 
-export default function SignIn({ onSignIn }) {
+export default function SignIn() {
+  const handleSignIn = () => {
+    PubSub.publish('auth.change', { isSignedIn: true })
+  }
+
   return (
     <div className="max-w-96 mx-auto">
       <div className="mt-8 flex flex-col items-center">
@@ -52,7 +57,12 @@ export default function SignIn({ onSignIn }) {
             <Checkbox defaultChecked label="Remember me" />
           </div>
 
-          <Button className="mt-1" type="submit" fullWidth onClick={onSignIn}>
+          <Button
+            className="mt-1"
+            type="submit"
+            fullWidth
+            onClick={handleSignIn}
+          >
             Sign In
           </Button>
 

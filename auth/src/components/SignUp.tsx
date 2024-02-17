@@ -6,8 +6,13 @@ import {
   Button,
   Checkbox,
 } from '@material-tailwind/react'
+import PubSub from 'pubsub-js'
 
-export default function SignUp({ onSignUp }) {
+export default function SignUp() {
+  const handleSignUp = () => {
+    PubSub.publish('auth.change', { isSignedUp: true })
+  }
+
   return (
     <div className="max-w-96 mx-auto">
       <div className="mt-8 flex flex-col items-center">
@@ -63,7 +68,12 @@ export default function SignUp({ onSignUp }) {
             <Checkbox defaultChecked label="I want to receive news" />
           </div>
 
-          <Button className="mt-1" type="submit" fullWidth onClick={onSignUp}>
+          <Button
+            className="mt-1"
+            type="submit"
+            fullWidth
+            onClick={handleSignUp}
+          >
             Sign Up
           </Button>
 
