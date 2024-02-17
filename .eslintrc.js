@@ -30,8 +30,9 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
-  ignorePatterns: ['**/*.css', '**/*.scss'],
+  ignorePatterns: ['**/*.css', '**/*.scss', '**/*.md'],
   settings: {
     react: {
       version: 'detect',
