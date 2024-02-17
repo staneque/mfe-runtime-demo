@@ -17,7 +17,7 @@ import {
 import RouterSync from './routes/RouterSync'
 
 function ErrorBoundary() {
-  let error = useRouteError()
+  const error = useRouteError()
   console.error('CMS APP', error)
 
   return <div>EГГОГ - CMS APP</div>
