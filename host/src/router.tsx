@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, useRouteError } from 'react-router-dom'
 import Layout from './components/Layout'
+import Loading from './components/Loading'
 import Dashboard from './components/Dashboard'
 import Home from './components/Home'
 
@@ -28,7 +29,7 @@ export const routes = [
       {
         path: `/cms/*`,
         element: (
-          <Suspense fallback="Loading cms...">
+          <Suspense fallback={<Loading />}>
             <CMSLazy />
           </Suspense>
         ),
@@ -36,7 +37,7 @@ export const routes = [
       {
         path: `/auth/*`,
         element: (
-          <Suspense fallback="Loading auth...">
+          <Suspense fallback={<Loading />}>
             <AuthLazy />
           </Suspense>
         ),
@@ -44,7 +45,7 @@ export const routes = [
       {
         path: `/dashboard`,
         element: (
-          <Suspense fallback="Loading auth...">
+          <Suspense fallback={<Loading />}>
             <Dashboard />
           </Suspense>
         ),

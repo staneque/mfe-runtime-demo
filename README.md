@@ -1,4 +1,4 @@
-# Build-time micro frontend architecture demo with Module Federation Webpack plugin.
+# Build-time micro frontend demo with Module Federation Webpack plugin. React + Svelte.
 
 Routing (in-memory routers in the remote apps) and authentication state are being synced with host via PubSub.
 

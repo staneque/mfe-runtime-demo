@@ -1,13 +1,13 @@
-name: deploy-auth-app
+name: deploy-dashboard-app
 
 on:
   push:
     branches: ['main']
-    paths: auth/**
+    paths: dashboard/**
 
 defaults:
   run:
-    working-directory: auth
+    working-directory: dashboard
 
 jobs:
   deploy:
@@ -38,10 +38,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy resources
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/dashboard/latest
 
       - name: Set no max-edge for index.html
-        run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest/index.html s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest/index.html --metadata-directive REPLACE --cache-control max-age=0 --content-type "text/html"
+        run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET_NAME }}/dasboard/latest/index.html s3://${{ secrets.AWS_S3_BUCKET_NAME }}/dashboard/latest/index.html --metadata-directive REPLACE --cache-control max-age=0 --content-type "text/html"
 
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --path "/auth/latest/index.html"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --path "/dashboard/latest/index.html"
