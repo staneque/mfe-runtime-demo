@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { matchRoutes, useLocation, useNavigate } from 'react-router-dom'
 import PubSub from 'pubsub-js'
+import { routes } from '../router'
 
 interface UseRouterSyncParams {
   listenEventName: string
@@ -13,27 +14,30 @@ export const useRoutersSync = ({
 }: UseRouterSyncParams) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const handlerRef = useRef<(data: string) => void>(() => {})
+  const handleHostNavigationRef = useRef<(topic: string, data: string) => void>(
+    () => {}
+  )
 
-  const handleNavigation = (pathname: string) => {
-    if (location.pathname === pathname) {
+  const handleHostNavigation = (topic: string, pathname: string) => {
+    console.log('REMOTE AUTH RECEIVED', topic, pathname)
+    if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
       return
     }
 
     navigate(pathname)
+    console.log('REMOTE AUTH NAVIGATED', pathname)
   }
 
   useEffect(() => {
-    handlerRef.current = handleNavigation
+    handleHostNavigationRef.current = handleHostNavigation
   }, [location])
 
   // Subscribe to the host navigation events
   useEffect(() => {
-    console.log(`Remote app subscribed to the host`, listenEventName)
-
     const token = PubSub.subscribe(
       listenEventName,
-      (_: string, pathname: string) => handlerRef.current(pathname)
+      (topic: string, pathname: string) =>
+        handleHostNavigationRef.current(topic, pathname)
     )
 
     return () => PubSub.unsubscribe(token)
@@ -42,5 +46,6 @@ export const useRoutersSync = ({
   // Notify the host
   useEffect(() => {
     PubSub.publish(publishEventName, location.pathname)
+    console.log('REMOTE AUTH PUBLISHED', publishEventName, location.pathname)
   }, [location])
 }

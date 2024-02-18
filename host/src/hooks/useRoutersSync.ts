@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import PubSub from 'pubsub-js'
 
@@ -9,9 +9,10 @@ export const useRoutersSync = ({
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const handlerRef = useRef<(data: string) => void>(() => {})
+  const handlerRef = useRef<(topic: string, data: string) => void>(() => {})
 
-  const handleNavigation = pathname => {
+  const handleNavigation = (topic: string, pathname: string) => {
+    console.log('HOST RECEIVED', topic, pathname)
     const newPathname = `${remotePathnamePrefix}${pathname}`
 
     if (location.pathname === pathname) {
@@ -19,6 +20,7 @@ export const useRoutersSync = ({
     }
 
     navigate(newPathname)
+    console.log('HOST NAVIGATED', pathname)
   }
 
   useEffect(() => {
@@ -27,13 +29,9 @@ export const useRoutersSync = ({
 
   // Subscribe to the remote app navigation events
   useEffect(() => {
-    console.log(
-      `Host app subscribed to remote app on prefix ${remotePathnamePrefix}`
-    )
-
     const token = PubSub.subscribe(
       listenEventName,
-      (_: string, pathname: string) => handlerRef.current(pathname)
+      (topic: string, pathname: string) => handlerRef.current(topic, pathname)
     )
 
     return () => PubSub.unsubscribe(token)
@@ -41,9 +39,10 @@ export const useRoutersSync = ({
 
   // Notify the remote app
   useEffect(() => {
-    PubSub.publish(
-      publishEventName,
-      location.pathname.replace(remotePathnamePrefix, '')
-    )
+    const pathname = location.pathname.replace(remotePathnamePrefix, '')
+
+    PubSub.publish(publishEventName, pathname)
+
+    console.log('HOST PUBLISHED', publishEventName, pathname)
   }, [location])
 }

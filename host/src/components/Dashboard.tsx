@@ -1,16 +1,7 @@
-import React, { useContext, useEffect } from 'react'
-import { AuthContext } from '../App'
-import { useNavigate } from 'react-router-dom'
+import { useProtectedRoute } from '../hooks/useProtectedRoute'
 
 function Dashboard() {
-  const { isSignedIn } = useContext(AuthContext)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!isSignedIn) {
-      navigate('/auth/signin')
-    }
-  }, [isSignedIn])
+  useProtectedRoute()
 
   return <div>Dashboard</div>
 }

@@ -6,7 +6,7 @@ import PubSub from 'pubsub-js'
 export const AuthContext = createContext({ isSignedIn: false })
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(!!localStorage.getItem('token'))
 
   useEffect(() => {
     const token = PubSub.subscribe(
@@ -17,6 +17,14 @@ function App() {
 
     return () => PubSub.unsubscribe(token)
   }, [])
+
+  useEffect(() => {
+    if (isSignedIn) {
+      localStorage.setItem('token', '!QW@#$%SDW%^%$@%^ERAA$%#$%#WT')
+    } else {
+      localStorage.removeItem('token')
+    }
+  }, [isSignedIn])
 
   return (
     <AuthContext.Provider value={{ isSignedIn }}>

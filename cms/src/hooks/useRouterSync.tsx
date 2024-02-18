@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { matchRoutes, useLocation, useNavigate } from 'react-router-dom'
 import PubSub from 'pubsub-js'
+import { routes } from '../router'
 
 interface UseRouterSyncParams {
   listenEventName: string
@@ -13,27 +14,31 @@ export const useRoutersSync = ({
 }: UseRouterSyncParams) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const handlerRef = useRef<(data: string) => void>(() => {})
+  const handleHostNavigatonRef = useRef<(topic: string, data: string) => void>(
+    () => {}
+  )
 
-  const handleNavigation = (pathname: string) => {
-    if (location.pathname === pathname) {
+  const handleHostNavigaton = (topic: string, pathname: string) => {
+    console.log('REMOTE CMS RECEIVED', topic, pathname)
+
+    if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
       return
     }
 
     navigate(pathname)
+    console.log('REMOTE CMS NAVIGATED', pathname)
   }
 
   useEffect(() => {
-    handlerRef.current = handleNavigation
+    handleHostNavigatonRef.current = handleHostNavigaton
   }, [location])
 
   // Subscribe to the host navigation events
   useEffect(() => {
-    console.log(`Remote app subscribed to the host`, listenEventName)
-
     const token = PubSub.subscribe(
       listenEventName,
-      (_: string, pathname: string) => handlerRef.current(pathname)
+      (topic: string, pathname: string) =>
+        handleHostNavigatonRef.current(topic, pathname)
     )
 
     return () => PubSub.unsubscribe(token)
@@ -42,5 +47,6 @@ export const useRoutersSync = ({
   // Notify the host
   useEffect(() => {
     PubSub.publish(publishEventName, location.pathname)
+    console.log('REMOTE CMS PUBLISHED', publishEventName, location.pathname)
   }, [location])
 }

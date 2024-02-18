@@ -18,7 +18,7 @@ function CMS() {
 
   useRoutersSync({
     listenEventName: '@navigation.remote.auth',
-    publishEventName: '@navigation.host',
+    publishEventName: '@navigation.host.auth',
     remotePathnamePrefix,
   })
 

@@ -1,19 +1,22 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRoutersSync } from '../hooks/useRoutersSync'
+import { useProtectedRoute } from '../hooks/useProtectedRoute'
 import { mount } from 'cms/Cms'
 import config from '../config'
 
 const remotePathnamePrefix = config.remotePathnamePrefix.CMS
 
 function CMS() {
+  useProtectedRoute()
+
   const location = useLocation()
   const refRoot = useRef<HTMLDivElement>(null)
   const isFirstRun = useRef(true)
 
   useRoutersSync({
     listenEventName: '@navigation.remote.cms',
-    publishEventName: '@navigation.host',
+    publishEventName: '@navigation.host.cms',
     remotePathnamePrefix,
   })
 
