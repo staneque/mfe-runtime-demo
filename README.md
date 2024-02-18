@@ -1,6 +1,6 @@
-# Build-time micro frontend architecture example with Module Federation Webpack plugin.
+# Build-time micro frontend architecture demo with Module Federation Webpack plugin.
 
-Remote apps utilize memory routers that synchronize with the host Browser Router through custom event subscriptions.
+Routing (in-memory routers in the remote apps) and authentication state are being synced with host via PubSub.
 
 [Live demo](https://djuyc1jmeh0tr.cloudfront.net)
 
