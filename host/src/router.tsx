@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, useRouteError } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './components/Dashboard'
+import Home from './components/Home'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 const AuthLazy = lazy(() => import('./components/Auth'))
@@ -22,7 +23,7 @@ export const routes = [
     children: [
       {
         index: true,
-        element: <h1>HOME</h1>,
+        element: <Home />,
       },
       {
         path: `/cms/*`,

@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "baseUrl": "./",
+    "types": ["svelte", "jest", "testing-library__jest-dom"],
+    "paths": {
+      "src/*": ["src/*"]
+    },
+    "ignoreDeprecations": "5.0"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+}

@@ -7,32 +7,24 @@ const deps = require('./package.json').dependencies
 const devConfig = {
   mode: 'development',
   output: {
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:8083/',
   },
   devServer: {
-    port: 8080,
-    // React router issues on hard refresh
-    // https://github.com/remix-run/react-router/issues/676#issuecomment-174073981,
-    // https://github.com/react-boilerplate/react-boilerplate/issues/113
+    port: 8083,
     historyApiFallback: true,
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'host',
-      remotes: {
-        cms: 'cms@http://localhost:8081/remoteEntry.js',
-        auth: 'auth@http://localhost:8082/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:8083/remoteEntry.js',
+      name: 'dashboard',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Dashboard': './src/bootstrap',
       },
       shared: {
         ...deps,
-        react: {
+        svelte: {
           singleton: true,
           requiredVersion: deps.react,
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: deps['react-dom'],
         },
       },
     }),

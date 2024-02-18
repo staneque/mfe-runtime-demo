@@ -2,32 +2,26 @@ const { merge } = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common')
-const deps = require('./package.json').dependencies
-
-const remoteAppDomain = process.env.REMOTE_APP_DOMAIN
+const deps = require('../cms/package.json').dependencies
 
 const prodConfig = {
   mode: 'production',
   output: {
-    publicPath: '/host/latest/',
+    filename: '[name].[contenthash].js',
+    publicPath: '/dashboard/latest/',
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'host',
-      remotes: {
-        cms: `cms@${remoteAppDomain}/cms/latest/remoteEntry.js`,
-        auth: `auth@${remoteAppDomain}/auth/latest/remoteEntry.js`,
-        dashboard: `dashboard@${remoteAppDomain}/dashboard/latest/remoteEntry.js`,
+      name: 'cms',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Dashboard': './src/bootstrap',
       },
       shared: {
         ...deps,
-        react: {
+        svelte: {
           singleton: true,
-          requiredVersion: deps.react,
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: deps['react-dom'],
+          requiredVersion: deps.svelte,
         },
       },
     }),
