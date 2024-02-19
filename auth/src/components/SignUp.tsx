@@ -10,7 +10,7 @@ import PubSub from 'pubsub-js'
 
 export default function SignUp() {
   const handleSignUp = () => {
-    PubSub.publish('auth.change', { isSignedUp: true })
+    PubSub.publish('auth.change', { isSignedIn: true })
   }
 
   return (
