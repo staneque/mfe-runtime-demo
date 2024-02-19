@@ -1,5 +1,5 @@
 {
-  "name": "cms",
+  "name": "internal-platform",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "concurrently 'npm start --prefix dashboard' 'npm start --prefix cms' 'npm start --prefix auth' 'npm start --prefix host'",
     "postinstall": "(cd host && npm install); (cd cms && npm install); (cd dashboard && npm install); (cd auth && npm install);"
   },
-  "keywords": [],
+  "keywords": ["Module federation"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
