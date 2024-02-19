@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useRoutersSync } from '../hooks/useRoutersSync'
 import { mount } from 'auth/Auth'
-import { PubSub } from 'pubsub-js'
 import config from '../config'
 import { AuthContext } from '../App'
 

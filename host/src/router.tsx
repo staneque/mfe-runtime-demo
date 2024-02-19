@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Loading from './components/Loading'
 import Dashboard from './components/Dashboard'
 import Home from './components/Home'
+import Protected from './components/Protected'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 const AuthLazy = lazy(() => import('./components/Auth'))
@@ -30,7 +31,9 @@ export const routes = [
         path: `/cms/*`,
         element: (
           <Suspense fallback={<Loading />}>
-            <CMSLazy />
+            <Protected>
+              <CMSLazy />
+            </Protected>
           </Suspense>
         ),
       },
@@ -46,7 +49,9 @@ export const routes = [
         path: `/dashboard`,
         element: (
           <Suspense fallback={<Loading />}>
-            <Dashboard />
+            <Protected>
+              <Dashboard />
+            </Protected>
           </Suspense>
         ),
       },
