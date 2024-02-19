@@ -3,7 +3,7 @@ import { matchRoutes, useLocation, useNavigate } from 'react-router-dom'
 import PubSub from 'pubsub-js'
 import { routes } from '../router'
 
-interface UseRouterSyncParams {
+interface RouterSync {
   listenEventName: string
   publishEventName: string
 }
@@ -11,7 +11,7 @@ interface UseRouterSyncParams {
 export const useRoutersSync = ({
   listenEventName,
   publishEventName,
-}: UseRouterSyncParams) => {
+}: RouterSync) => {
   const location = useLocation()
   const navigate = useNavigate()
   const handleHostNavigatonRef = useRef<(topic: string, data: string) => void>(

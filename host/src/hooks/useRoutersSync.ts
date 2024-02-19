@@ -2,11 +2,17 @@ import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import PubSub from 'pubsub-js'
 
+interface RouterSync {
+  listenEventName: string
+  publishEventName: string
+  remotePathnamePrefix: string
+}
+
 export const useRoutersSync = ({
   listenEventName,
   publishEventName,
   remotePathnamePrefix,
-}) => {
+}: RouterSync) => {
   const location = useLocation()
   const navigate = useNavigate()
   const handlerRef = useRef<(topic: string, data: string) => void>(() => {})
@@ -18,8 +24,8 @@ export const useRoutersSync = ({
     if (location.pathname === pathname) {
       return
     }
-
-    navigate(newPathname)
+    // TODO: passing previous location state this way seems to be not very reliable, probably consider other options
+    navigate(newPathname, { state: { from: location.state?.from } })
     console.log('HOST NAVIGATED', pathname)
   }
 

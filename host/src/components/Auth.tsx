@@ -7,11 +7,12 @@ import { AuthContext } from '../App'
 
 const remotePathnamePrefix = config.remotePathnamePrefix.Auth
 
-function CMS() {
+function Auth() {
   const location = useLocation()
   const refRoot = useRef<HTMLDivElement>(null)
   const isFirstRun = useRef(true)
   const navigate = useNavigate()
+  console.log('location', location)
 
   const { isSignedIn } = useContext(AuthContext)
 
@@ -23,7 +24,7 @@ function CMS() {
 
   useEffect(() => {
     if (isSignedIn) {
-      navigate('/dashboard')
+      navigate(location.state?.from || '/dashboard')
     }
   }, [isSignedIn])
 
@@ -40,4 +41,4 @@ function CMS() {
   return <div id="auth-mounting-point" className="" ref={refRoot} />
 }
 
-export default CMS
+export default Auth
