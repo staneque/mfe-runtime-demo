@@ -2,9 +2,6 @@
 
 Routing (in-memory routers in the remote apps) and authentication state are being synced with host via PubSub.
 
-Host, CMS app, Auth app - React
-Dashboard - Svelte
-
 [Live demo](https://djuyc1jmeh0tr.cloudfront.net)
 
 ### Run in dev mode
