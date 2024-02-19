@@ -8,6 +8,7 @@ import Protected from './components/Protected'
 
 const CMSLazy = lazy(() => import('./components/СMS'))
 const AuthLazy = lazy(() => import('./components/Auth'))
+const DashboardLazy = lazy(() => import('./components/Dashboard'))
 
 function ErrorBoundary() {
   const error = useRouteError()
@@ -50,7 +51,7 @@ export const routes = [
         element: (
           <Suspense fallback={<Loading />}>
             <Protected>
-              <Dashboard />
+              <DashboardLazy />
             </Protected>
           </Suspense>
         ),
