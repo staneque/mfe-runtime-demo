@@ -1,26 +1,21 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
-  import AreaChart from "./lib/AreaChart.svelte";
+  import AreaChart from "./lib/AreaChart.svelte"
+  import ColumnChart from "./lib/ColumnChart.svelte"
+  import LineChart from "./lib/LineChart.svelte"
+  import BarChart from "./lib/BarChart.svelte"
+  import PieChart from "./lib/PieChart.svelte"
+  import DonutChart from "./lib/DonutChart.svelte"
+  import RadialChart from "./lib/RadialChart.svelte"
 </script>
 
 <main class="text-center">
-  <h1 class="p-3 text-lg font-bold">This is Svelte app</h1>
-
-  <Counter />
-
-  <AreaChart />
-
-  <p class="p-2 text-sm text-gray-500">
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
+  <div class="grid  gap-6 py-16 px-6 mx-auto max-w-[1100px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <AreaChart />
+    <LineChart />
+    <ColumnChart />
+    <BarChart />
+    <PieChart /> 
+    <DonutChart />
+    <RadialChart /> 
+  </div>
 </main>
-
-<style>
-    a {
-        @apply text-blue-700;
-    }
-    a:hover {
-        @apply underline;
-    }
-</style>
