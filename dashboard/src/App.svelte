@@ -1,5 +1,6 @@
 <script lang="ts">
   import Counter from "./lib/Counter.svelte";
+  import AreaChart from "./lib/AreaChart.svelte";
 </script>
 
 <main class="text-center">
@@ -7,6 +8,7 @@
 
   <Counter />
 
+  <AreaChart />
 
   <p class="p-2 text-sm text-gray-500">
     Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
