@@ -4,7 +4,7 @@
 
   let options = {
     chart: {
-      height: 200,
+      height: 300,
       maxWidth: '100%',
       type: 'area',
       fontFamily: 'Inter, sans-serif',
