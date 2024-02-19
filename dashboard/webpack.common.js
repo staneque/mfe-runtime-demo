@@ -52,7 +52,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      svelte: path.resolve('node_modules', 'svelte'), // Svelte 3: path.resolve('node_modules', 'svelte')
+      svelte: path.resolve('node_modules', 'svelte/src/runtime'),
     },
     extensions: ['.tsx', '.ts', '.js', '.mjs', '.svelte'],
     mainFields: ['svelte', 'browser', 'module', 'main'],
