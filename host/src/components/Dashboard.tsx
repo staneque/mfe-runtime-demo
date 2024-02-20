@@ -15,7 +15,13 @@ function Dashboard() {
     isFirstRun.current = false
   }, [location])
 
-  return <div id="dashboard-mounting-point" className="" ref={refRoot} />
+  return (
+    <div
+      id="dashboard-mounting-point"
+      className="overflow-auto"
+      ref={refRoot}
+    />
+  )
 }
 
 export default Dashboard

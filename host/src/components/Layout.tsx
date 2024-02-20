@@ -4,7 +4,10 @@ import Header from './Header'
 function Layout() {
   return (
     <div className="flex flex-col h-full">
-      <Header />
+      <div className="h-20">
+        <Header />
+      </div>
+
       <Outlet />
     </div>
   )

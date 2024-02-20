@@ -6,7 +6,7 @@
     series: [35.1, 23.5, 2.4, 5.4],
     colors: ['#1C64F2', '#16BDCA', '#FDBA8C', '#E74694'],
     chart: {
-      height: 400,
+      height: 300,
       width: '100%',
       type: 'donut'
     },

@@ -37,7 +37,7 @@ function Header() {
   }
 
   return (
-    <div className="h-20 px-20 text-center flex shrink-0  justify-start items-center text-white bg-teal-200 red">
+    <div className="h-20 w-full z-50 px-20 text-center flex shrink-0  justify-start items-center text-white bg-teal-200 red">
       <MenuItem to="/">Home</MenuItem>
 
       <MenuItem to="/cms" className="mr-4">

@@ -8,7 +8,7 @@
     series: [90, 85, 70],
     colors: ['#1C64F2', '#16BDCA', '#FDBA8C'],
     chart: {
-      height: '200px',
+      height: 200,
       width: '100%',
       type: 'radialBar',
       sparkline: {
