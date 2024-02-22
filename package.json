@@ -2,14 +2,16 @@
   "name": "internal-platform",
   "version": "1.0.0",
   "description": "",
+  "keywords": [
+    "Module federation"
+  ],
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently 'npm start --prefix dashboard' 'npm start --prefix cms' 'npm start --prefix auth' 'npm start --prefix host'",
-    "postinstall": "(cd host && npm install); (cd cms && npm install); (cd dashboard && npm install); (cd auth && npm install);"
+    "postinstall": "(cd host && npm install); (cd cms && npm install); (cd dashboard && npm install); (cd auth && npm install);",
+    "start": "concurrently 'npm start --prefix dashboard' 'npm start --prefix cms' 'npm start --prefix auth' 'npm start --prefix host'"
   },
-  "keywords": ["Module federation"],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",

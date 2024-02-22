@@ -1,32 +1,19 @@
-const config = {
+import withMT from '@material-tailwind/react/utils/withMT'
+
+export default withMT({
   content: [
-    './src/**/*.{html,js,svelte,ts}',
-    './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}',
+    './src/**/*.{js,jsx,html,svelte,ts,tsx}',
+    './node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}',
   ],
-
-  plugins: [require('flowbite/plugin')],
-
-  darkMode: 'class',
 
   theme: {
     extend: {
-      colors: {
-        // flowbite-svelte
-        primary: {
-          50: '#FFF5F2',
-          100: '#FFF1EE',
-          200: '#FFE4DE',
-          300: '#FFD5CC',
-          400: '#FFBCAD',
-          500: '#FE795D',
-          600: '#EF562F',
-          700: '#EB4F27',
-          800: '#CC4522',
-          900: '#A5371B',
-        },
+      gridTemplateColumns: {
+        'auto-fill-200': 'repeat(auto-fill, minmax(200px, 1fr))',
+        'auto-fit-100': 'repeat(auto-fit, minmax(100px, 1fr))',
       },
     },
   },
-}
-
-module.exports = config
+  plugins: [],
+})
