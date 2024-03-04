@@ -2,7 +2,7 @@
 
 Routing (in-memory routers in the remote apps) and authentication state are being synced with host via PubSub.
 
-[Live demo](https://djuyc1jmeh0tr.cloudfront.net)
+[Live demo](https://mfe-dcq.pages.dev)
 
 ### Run in dev mode
 
