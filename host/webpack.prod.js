@@ -9,7 +9,7 @@ const remoteAppDomain = process.env.REMOTE_APP_DOMAIN
 const prodConfig = {
   mode: 'production',
   output: {
-    publicPath: '/host/latest/',
+    publicPath: '/',
     filename: '[name].[contenthash].js',
   },
   plugins: [
